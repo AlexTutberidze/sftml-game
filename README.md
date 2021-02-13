@@ -1,16 +1,14 @@
-#SFML game project
+# SFML game project
 
 ## Build:
-***
+
 ```bash
 cd bin
 ./build.py
-```bash
-***
+```
+
 
 ## Run:
-
-***
 
 Open terminals and execute both files separately.
 
@@ -21,6 +19,7 @@ then run client.exe
 ./server.exe
 ./client.exe
 ```
+
 ***
 
 ## Contributing
