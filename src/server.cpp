@@ -6,7 +6,7 @@ int main()
 {   
     sf::TcpListener listener;
 
-    if (listener.listen(50003) != sf::Socket::Done)
+    if (listener.listen(53000) != sf::Socket::Done)
     {
         std::cerr << "Error when handling requests!" << std::endl;
         exit(EXIT_FAILURE);

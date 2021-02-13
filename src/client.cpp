@@ -34,9 +34,12 @@ int main()
             exit(EXIT_FAILURE);
         }
         
+        std::string input;
+        std::cout << "Enter server ip address" << std::endl;
+        std::cin >> input;
 
         sf::TcpSocket socket;
-        sf::Socket::Status status = socket.connect("192.168.1.64", 50003);
+        sf::Socket::Status status = socket.connect(input, 53000);
 
         if (status != sf::Socket::Done)
         {
