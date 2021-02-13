@@ -3,7 +3,7 @@
 ## Build:
 
 ```bash
-cd bin
+cd build
 ./build.py
 ```
 
@@ -16,6 +16,7 @@ first run server.exe
 then run client.exe
 
 ```bash
+cd ../bin
 ./server.exe
 ./client.exe
 ```
