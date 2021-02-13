@@ -1,12 +1,28 @@
-To intstall sfml library on linux run:
+SFML game project
 
-sudo apt-get install libsfml-dev
+Build:
+=======================
+***
+cd bin
+./build.py
+***
+=======================
 
 
-for the compilation part run:
+Run:
 
-g++ <filename.cpp> -o <exefilename.exe> -lsfml-graphics -lsfml-window -lsfml-system
+=======================
 
-To run the executible file run:
+Open terminals and execute both files separately.
 
-./<exefilename.exe>
+first run server.exe
+then run client.exe
+
+***
+./server.exe
+./client.exe
+***
+
+=======================
+
+    
