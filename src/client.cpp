@@ -70,6 +70,16 @@ int main()
             text.setFillColor(sf::Color::Red);
             text.setStyle(sf::Text::Bold);
 
+            // if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
+            // {
+            //     // left key is pressed: move our character
+            //     // text.move(1.f, 0.f);
+            //     text.setPosition(10.f, 50.f);
+            //     text.move(5.f, 5.f);
+
+            //     sf::Vector2f position = text.getPosition();
+            // }
+
             window.draw(text);
 
             // end the current frame
