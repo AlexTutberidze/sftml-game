@@ -7,15 +7,28 @@
 int main()
 {
     // create the window
-    sf::RenderWindow window(sf::VideoMode(800, 600), "My window");
+    sf::RenderWindow window(sf::VideoMode(1000, 800), "My window");
     sf::CircleShape shape(50.f);
     sf::CircleShape shape1(50.f);
-    player::player player;
 
-    player.set_name("player");
-    player.set_coordinate(0, 0);
+    player::Position pos1{0, 0}, pos2{0, 0};
 
-    shape.setFillColor(sf::Color(100, 250, 50));
+    player::Player player1, player2;
+
+    player1.set_name("Player");
+    player1.set_coordinate(pos1);
+
+    shape.setFillColor(sf::Color(255, 153, 0));
+    shape1.setFillColor(sf::Color(255, 26, 26));
+
+    sf::TcpSocket socket;
+    sf::Socket::Status status = socket.connect("127.0.0.1", 53000);
+
+    if (status != sf::Socket::Done)
+    {
+        std::cerr << "Error occurred when connecting socket!" << std::endl;
+        exit(EXIT_FAILURE);
+    }
 
     // run the program as long as the window is open
     while (window.isOpen())
@@ -34,30 +47,30 @@ int main()
             {
                 if (event.key.code == sf::Keyboard::Left)
                 {
-                    int x,y;
-                    player.get_coordinate(x, y);
-                    player.set_coordinate(x - 10, y);   
+                    pos1 = player1.get_coordinate();
+                    pos1.x -= 10;
+                    player1.set_coordinate(pos1);   
                 }
 
                 else if(event.key.code == sf::Keyboard::Right)
                 {
-                    int x, y;
-                    player.get_coordinate(x, y);
-                    player.set_coordinate(x + 10, y);
+                    pos1 = player1.get_coordinate();
+                    pos1.x += 10;
+                    player1.set_coordinate(pos1);
                 }
 
                 else if(event.key.code == sf::Keyboard::Down)
                 {
-                    int x, y;
-                    player.get_coordinate(x, y);
-                    player.set_coordinate(x, y + 10);
+                    pos1 = player1.get_coordinate();
+                    pos1.y += 10;
+                    player1.set_coordinate(pos1);
                 }
 
                 else if (event.key.code == sf::Keyboard::Up)
                 {
-                    int x, y;
-                    player.get_coordinate(x, y);
-                    player.set_coordinate(x, y - 10);
+                    pos1 = player1.get_coordinate();
+                    pos1.y -= 10;
+                    player1.set_coordinate(pos1);
                 }
             }
                 
@@ -81,14 +94,7 @@ int main()
         // std::cout << "Enter server ip address" << std::endl;
         // std::cin >> input;
 
-        sf::TcpSocket socket;
-        sf::Socket::Status status = socket.connect("127.0.0.1", 53000);
-
-        if (status != sf::Socket::Done)
-        {
-            std::cerr << "Error occurred when connecting socket!" << std::endl;
-            exit(EXIT_FAILURE);
-        }
+        
 
         int data[2];
 
@@ -97,13 +103,15 @@ int main()
         if (socket.receive(data, 2, received) != sf::Socket::Done)
         {
             std::cerr << "Error occurred when receiving data!" << std::endl;
-            exit(EXIT_FAILURE);
+            //exit(EXIT_FAILURE);
         }
 
-        player::player player2;
+        shape1.setPosition(data[0], data[1]);
 
-        player2.set_name("player2");
-        player2.set_coordinate(data[0], data[1]);
+        window.draw(shape1);
+
+        // end the current frame
+        window.display();
 
         // while (1)
         // {
@@ -137,25 +145,24 @@ int main()
 
             //     sf::Vector2f position = text.getPosition();
             // }
-            int x, y;
-            int x1, y1;
+            
+            int buff[2];
 
-            player.get_coordinate(x, y);
+            pos1 = player1.get_coordinate();
 
-            shape.setPosition(x, y);
+            buff[0] = pos1.x;
+            buff[1] = pos1.y;
+
+            if (socket.send(buff, 2, received) != sf::Socket::Done)
+            {
+                std::cerr << "Error occurred when sending data!" << std::endl;
+                exit(EXIT_FAILURE);
+            }
+
+            shape.setPosition(pos1.x, pos1.y);
             window.draw(shape);
 
-            player2.get_coordinate(x1, y1);
-
-            shape1.setPosition(x1, y1);
-
-            window.draw(shape1);
-
-            // end the current frame
-            window.display();
         // }
-        
-
         
     }
 

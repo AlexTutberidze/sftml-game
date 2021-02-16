@@ -57,9 +57,26 @@ int main()
     //     }
     // });
 
+    // sf::Thread *thread = new sf::Thread([&counter](int index) 
+    // {
+    //     size_t received;
+
+    //     if (*(int *)index == 0)
+    //     {
+    //         client[0].send(buff + 2, 2, received);
+    //         client[0].receive(buff, 2, received);
+    //     }
+
+    //     else if (*(int *)index == 1)
+    //     {
+    //         client[1].send(buff, 2, received);
+    //         client[1].receive(buff + 2, 2, received);
+    //     }
+    // });
+
     pthread_t tid[2];
 
-    while (counter != 2)
+    while (counter < 2)
     {
         if (listener.accept(client[counter]) == sf::Socket::Done)
         {

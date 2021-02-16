@@ -13,7 +13,7 @@ os.system("pip3 install pip-custom-platform")
 
 
 os.system("g++ ../src/server.cpp -o ../bin/server.exe -lsfml-system -lsfml-network -pthread")
-os.system("g++ ../src/client.cpp ../src/player.cpp -o ../bin/client.exe -lsfml-graphics -lsfml-window -lsfml-system -lsfml-network -pthread")
+os.system("g++ ../src/client.cpp -o ../bin/client.exe -lsfml-graphics -lsfml-window -lsfml-system -lsfml-network -pthread")
 
 os.system('clear' if platform.system() == 'Linux' else 'Windows' 'cls') 
 
