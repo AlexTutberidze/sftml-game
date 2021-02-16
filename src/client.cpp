@@ -1,12 +1,21 @@
 #include <SFML/Graphics.hpp>
 #include <SFML/Network.hpp>
 #include <iostream>
-#include <string>
+#include "player.hpp"
+
 
 int main()
 {
     // create the window
     sf::RenderWindow window(sf::VideoMode(800, 600), "My window");
+    sf::CircleShape shape(50.f);
+    sf::CircleShape shape1(50.f);
+    player::player player;
+
+    player.set_name("player");
+    player.set_coordinate(0, 0);
+
+    shape.setFillColor(sf::Color(100, 250, 50));
 
     // run the program as long as the window is open
     while (window.isOpen())
@@ -17,7 +26,41 @@ int main()
         {
             // "close requested" event: we close the window
             if (event.type == sf::Event::Closed)
+            {
                 window.close();
+            }
+
+            else if (event.type == sf::Event::KeyPressed)
+            {
+                if (event.key.code == sf::Keyboard::Left)
+                {
+                    int x,y;
+                    player.get_coordinate(x, y);
+                    player.set_coordinate(x - 10, y);   
+                }
+
+                else if(event.key.code == sf::Keyboard::Right)
+                {
+                    int x, y;
+                    player.get_coordinate(x, y);
+                    player.set_coordinate(x + 10, y);
+                }
+
+                else if(event.key.code == sf::Keyboard::Down)
+                {
+                    int x, y;
+                    player.get_coordinate(x, y);
+                    player.set_coordinate(x, y + 10);
+                }
+
+                else if (event.key.code == sf::Keyboard::Up)
+                {
+                    int x, y;
+                    player.get_coordinate(x, y);
+                    player.set_coordinate(x, y - 10);
+                }
+            }
+                
         }
 
         // clear the window with black color // /home/sandro/MEMES/MANUX.jpg
@@ -26,20 +69,20 @@ int main()
         // draw everything here...
         // window.draw(...);
 
-        sf::Font font;
+        // sf::Font font;
         
-        if (!font.loadFromFile("../design/OpenSans-BoldItalic.ttf"))
-        {
-            std::cerr << "Error occurred when laoding font!" << std::endl;
-            exit(EXIT_FAILURE);
-        }
+        // if (!font.loadFromFile("../design/OpenSans-BoldItalic.ttf"))
+        // {
+        //     std::cerr << "Error occurred when laoding font!" << std::endl;
+        //     exit(EXIT_FAILURE);
+        // }
         
-        std::string input;
-        std::cout << "Enter server ip address" << std::endl;
-        std::cin >> input;
+        // std::string input;
+        // std::cout << "Enter server ip address" << std::endl;
+        // std::cin >> input;
 
         sf::TcpSocket socket;
-        sf::Socket::Status status = socket.connect(input, 53000);
+        sf::Socket::Status status = socket.connect("127.0.0.1", 53000);
 
         if (status != sf::Socket::Done)
         {
@@ -47,28 +90,43 @@ int main()
             exit(EXIT_FAILURE);
         }
 
-        while (1)
+        int data[2];
+
+        std::size_t received;
+
+        if (socket.receive(data, 2, received) != sf::Socket::Done)
         {
-            char data[100];
+            std::cerr << "Error occurred when receiving data!" << std::endl;
+            exit(EXIT_FAILURE);
+        }
 
-            std::size_t received;
+        player::player player2;
 
-            if (socket.receive(data, 100, received) != sf::Socket::Done)
-            {
-                std::cerr << "Error occurred when receiving data!" << std::endl;
-                exit(EXIT_FAILURE);
-            }
+        player2.set_name("player2");
+        player2.set_coordinate(data[0], data[1]);
 
-            window.clear(sf::Color::White);
+        // while (1)
+        // {
+        //     char data[100];
 
-            sf::Text text;
+        //     std::size_t received;
 
-            text.setFont(font);
+        //     if (socket.receive(data, 100, received) != sf::Socket::Done)
+        //     {
+        //         std::cerr << "Error occurred when receiving data!" << std::endl;
+        //         exit(EXIT_FAILURE);
+        //     }
 
-            text.setString(data);
-            text.setCharacterSize(25);
-            text.setFillColor(sf::Color::Red);
-            text.setStyle(sf::Text::Bold);
+        //     window.clear(sf::Color::White);
+
+        //     sf::Text text;
+
+        //     text.setFont(font);
+
+        //     text.setString(data);
+        //     text.setCharacterSize(25);
+        //     text.setFillColor(sf::Color::Red);
+        //     text.setStyle(sf::Text::Bold);
 
             // if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
             // {
@@ -79,12 +137,23 @@ int main()
 
             //     sf::Vector2f position = text.getPosition();
             // }
+            int x, y;
+            int x1, y1;
 
-            window.draw(text);
+            player.get_coordinate(x, y);
+
+            shape.setPosition(x, y);
+            window.draw(shape);
+
+            player2.get_coordinate(x1, y1);
+
+            shape1.setPosition(x1, y1);
+
+            window.draw(shape1);
 
             // end the current frame
             window.display();
-        }
+        // }
         
 
         

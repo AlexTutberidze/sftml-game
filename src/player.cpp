@@ -14,7 +14,7 @@ void player::player::get_coordinate(int & x, int & y)
 
 void player::player::get_name(std::string & name)
 {
-    this->name = name;
+    name = this->name;
 }
 
 void player::player::set_name(std::string name)
