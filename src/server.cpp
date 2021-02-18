@@ -1,4 +1,5 @@
 #include "player.hpp"
+#include <file.hpp>
 #include <SFML/Network.hpp>
 #include <SFML/System.hpp>
 #include <SFML/Graphics.hpp>
@@ -12,7 +13,10 @@ int main()
 {   
     sf::TcpListener listener;
     sf::TcpSocket client;
-    
+
+    sf::RenderWindow window(sf::VideoMode(1000, 800), "Server");
+    sf::CircleShape shape(50.f);
+    sf::CircleShape shape1(50.f);
 
     if (listener.listen(53000) != sf::Socket::Done)
     {
@@ -25,10 +29,6 @@ int main()
         std::cerr << "Error occurred when accepting requests!" << std::endl;
         exit(EXIT_FAILURE);
     }
-
-    sf::RenderWindow window(sf::VideoMode(1000, 800), "My window");
-    sf::CircleShape shape(50.f);
-    sf::CircleShape shape1(50.f);
 
     // sf::Texture shape;
 

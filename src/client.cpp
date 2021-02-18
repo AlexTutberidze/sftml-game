@@ -12,7 +12,7 @@ sf::Mutex s_mtx, c_mtx;
 int main()
 {
     // create the window
-    sf::RenderWindow window(sf::VideoMode(1000, 800), "My window");
+    sf::RenderWindow window(sf::VideoMode(1000, 800), "Client");
     sf::CircleShape shape(50.f);
     sf::CircleShape shape1(50.f);
 
