@@ -1,5 +1,5 @@
-#include "player.hpp"
-#include <file.hpp>
+#include <tx_player.hpp>
+#include <tx_network.hpp>
 #include <SFML/Network.hpp>
 #include <SFML/System.hpp>
 #include <SFML/Graphics.hpp>
