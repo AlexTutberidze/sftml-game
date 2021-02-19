@@ -1,6 +1,6 @@
 # SFML game project
 
-![ ](https://github.com/AlexTutberidze/sfml-game/blob/master/design/shootertux.jpeg?raw=true)
+![ ](https://github.com/AlexTutberidze/sfml-game/blob/master/design/WARRIORTUX.png?raw=true)
 
 ## Build:
 
