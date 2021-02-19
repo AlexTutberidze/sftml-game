@@ -1,7 +1,6 @@
 # SFML game project
 
-![ ](https://www.google.com/imgres?imgurl=https%3A%2F%2Fcdn-shop.adafruit.com%2F1200x900%2F663-00.jpg&imgrefurl=https%3A%2F%2Fwww.adafruit.com%2Fproduct%2F663&tbnid=vQP0JT7EbQYb5M&vet=12ahUKEwie5_eA6PXuAhXSwAIHHRM2CtMQMygAegUIARDgAQ..i&docid=baSTHNGoWpR0hM&w=1200&h=900&q=tux%20penguin&client=ubuntu&ved=2ahUKEwie5_eA6PXuAhXSwAIHHRM2CtMQMygAegUIARDgAQ)
-
+![ ](https://github.com/AlexTutberidze/sfml-game/blob/master/design/shootertux.jpeg?raw=true)
 
 ## Build:
 
