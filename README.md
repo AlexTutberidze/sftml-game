@@ -1,4 +1,4 @@
-# SFML game project
+# Tux BattleGround Game Project
 
 ![ ](https://github.com/AlexTutberidze/sfml-game/blob/master/design/WARRIORTUX.png?raw=true)
 
