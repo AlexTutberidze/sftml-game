@@ -6,6 +6,7 @@
 #include <arpa/inet.h>
 #include <netinet/in.h>
 #include <netdb.h>
+#include <iostream>
 #include <string>
 
 namespace tuxNetwork
@@ -15,7 +16,7 @@ namespace tuxNetwork
     public:
         TuxTcpSocket();
         ~TuxTcpSocket();
-        void connect(const std::string & ip, const int portNum);
+        void connect(const std::string &, const int);
         void send();
         void receive();
 
@@ -28,7 +29,7 @@ namespace tuxNetwork
     public:
         TuxListener();
         ~TuxListener();
-        TuxTcpSocket & accept(const std::string &, const int portNum);
+        TuxTcpSocket & accept(const std::string &, const int);
 
     private:
         int sfd;

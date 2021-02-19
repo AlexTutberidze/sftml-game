@@ -1,5 +1,5 @@
-#include <tx_network.hpp>
-#include <tx_player.hpp>
+#include <tbg_player.hpp>
+#include <tbg_network.hpp>
 #include <SFML/Graphics.hpp>
 #include <iostream>
 
